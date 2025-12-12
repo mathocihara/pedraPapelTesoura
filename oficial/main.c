@@ -104,13 +104,24 @@ void jogar(int* totalPartidas, char*** historico, int* pontosJogador, int* ponto
     sprintf((*historico)[*totalPartidas - 1], "%s: %s | Computador: %s | %s", jogador.nome, escolha, comp, resultado);
 
     // Pergunta se deseja continuar
-    char resposta[5];
+char resposta[10];
+
+while (1) {
     printf("\nDeseja jogar novamente, %s? (sim/nao): ", jogador.nome);
     scanf("%s", resposta);
 
     if (strcmp(resposta, "sim") == 0) {
         jogar(totalPartidas, historico, pontosJogador, pontosComputador, empates);
+        break;
     }
+    else if (strcmp(resposta, "nao") == 0 || strcmp(resposta, "não") == 0) {
+        printf("\nEncerrando o jogo...\n");
+        return; // sai da função e volta ao main
+    }
+    else {
+        printf("Resposta inválida! Tente novamente.\n");
+    }
+}
 }
 
 // Função para salvar histórico e placar em arquivo
