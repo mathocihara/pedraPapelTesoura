@@ -10,7 +10,10 @@ struct cadastro {
     struct cadastro jogador;
 
 // função login
-int apenasNumeros(const char *str) {
+
+
+void login(struct cadastro *p) {
+    int apenasNumeros(const char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] < '0' || str[i] > '9') {
             return 0; // contém letra ou símbolo
@@ -27,8 +30,6 @@ int nomeValido(const char *nome) {
     }
     return 1; // válido
 }
-
-void login(struct cadastro *p) {
     char idadeStr[20];
 
     // --- Validação do nome ---
