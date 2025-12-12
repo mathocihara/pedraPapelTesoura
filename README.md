@@ -5,7 +5,7 @@ Para construir este sistema, foram empregadas técnicas de programação C, como
 
 ---
 
-## 2. 📂 Estrutura do Código
+## 2. Estrutura do Código
 
 ```text
 /oficial
@@ -18,3 +18,20 @@ Para construir este sistema, foram empregadas técnicas de programação C, como
    /obj/Debug
       main.o
    main.c
+```
+
+---
+## 3. Requisitos Atendidos e Onde Estão no Código
+
+
+| Requisito                | Onde está implementado                | Descrição                                                                                           |
+|--------------------------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Entrada e saída          | `main`, `login()`, `jogar()`           | Leitura do nome/idade, da jogada e das opções de continuar.                                          |
+| Estruturas de controle   | `jogar()`, `vencedor()`                | Loops `while` e estruturas `if/else` para validações e determinação do vencedor.                    |
+| Ponteiros                | `login()`, `jogar()`                   | Passagem de `struct cadastro` e variáveis de placar por referência (`*p`, `*totalPartidas`, etc.).   |
+| Alocação dinâmica        | `jogar()`                              | Uso de `realloc` para aumentar dinamicamente o vetor de histórico.                                   |
+| Vetores e matrizes       | `jogar()`                              | O histórico é um vetor de strings (`char**`).                                                        |
+| Strings                  | `login()`, `vencedor()`, `jogar()`, `salvarArquivo()` | Manipulação e comparação de strings (`strcmp`, `sprintf`).                                           |
+| Estruturas heterogêneas  | Globalmente (antes do login)           | Definição da `struct cadastro` para armazenar os dados do jogador.                                  |
+| Arquivos                 | `mostrarDesenho()`, `salvarArquivo()`  | Operações de leitura (`fopen(..., "r")`, `fgets`) e escrita (`fopen(..., "w")`, `fprintf`).         |
+| Modularização            | Divisão em funções                     | Projeto modularizado em funções dedicadas (`login()`, `jogadaComputador()`, `vencedor()`, etc.).     |
