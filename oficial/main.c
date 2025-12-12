@@ -10,47 +10,46 @@ struct cadastro {
     struct cadastro jogador;
 
 // função login
+int apenasNumeros(const char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            return 0; // contém letra ou símbolo
+        }
+    }
+    return 1; // só números
+}
+
+int nomeValido(const char *nome) {
+    for (int i = 0; nome[i] != '\0'; i++) {
+        if (nome[i] >= '0' && nome[i] <= '9') {
+            return 0; // contém número -> inválido
+        }
+    }
+    return 1; // válido
+}
+
 void login(struct cadastro *p) {
+    char idadeStr[20];
 
-    int apenasNumeros(const char *str) {
-        for (int i = 0; str[i] != '\0'; i++) {
-            if (str[i] < '0' || str[i] > '9') {
-                return 0;
-            }
-        }
-        return 1;
-    }
-
-    int nomeValido(const char *nome) {
-        for (int i = 0; nome[i] != '\0'; i++) {
-            if (nome[i] >= '0' && nome[i] <= '9') {
-                return 0;
-            }
-        }
-        return 1;
-    }
-
-
+    // --- Validação do nome ---
     printf("Qual seu nome: ");
     scanf(" %[^\n]", p->nome);
 
-    // valida nome
     while (!nomeValido(p->nome)) {
         printf("O nome não pode conter números! Digite novamente: ");
         scanf(" %[^\n]", p->nome);
     }
 
-    char idadeStr[20];
+    // --- Validação da idade ---
     printf("Qual sua idade: ");
     scanf("%s", idadeStr);
 
-    // valida idade
     while (!apenasNumeros(idadeStr)) {
         printf("A idade deve conter apenas números! Tente novamente: ");
         scanf("%s", idadeStr);
     }
 
-    p->idade = atoi(idadeStr);
+    p->idade = atoi(idadeStr);  // conversão para inteiro
 }
 
 
