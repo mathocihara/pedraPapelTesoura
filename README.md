@@ -171,3 +171,59 @@ default:
 Este trabalho possibilitou colocar em prática vários princípios da linguagem C em uma situação interessante e proveitosa. Foi possível aprofundar o conhecimento sobre estruturas, ponteiros, uso de memória dinâmica, tratamento de dados em arquivos e organização em módulos, fixando o aprendizado. 
 O produto final é um jogo que funciona bem, que oferece interação e que pode ser expandido, recebendo melhorias visuais ou compatibilidade com plataformas mais modernas.
 
+---
+## 9. Como Replicar o projeto
+
+Siga este passo a passo para baixar o projeto Pedra, Papel e Tesoura e rodar pelo CodeBlocks.
+<br>
+
+* Baixar o Projeto
+
+#### Opção A — Baixar como ZIP
+1. Acesse o repositório oficial:  
+   https://github.com/mathocihara/pedraPapelTesoura
+2. Clique no botão **Code** (botão verde).
+3. Clique em **Download ZIP**.
+4. Extraia o arquivo baixado em uma pasta do seu computador.
+
+#### Opção B — Clonar via Git (opcional)
+Se tiver Git instalado, rode:
+```bash
+git clone https://github.com/mathocihara/pedraPapelTesoura.git
+```
+
+* Abrir o Projeto no CodeBlocks
+
+Abra o CodeBlocks.<br>
+Vá em File → Open.<br>
+Navegue até a pasta onde você extraiu o projeto.<br>
+Abra o arquivo main.c (ou oficial.c, caso exista).<br>
+Se o CodeBlocks perguntar para criar um projeto baseado nesse arquivo, clique em Yes.<br>
+
+* Compilar o Projeto
+
+No CodeBlocks:
+- Pressione **F9**  
+  **ou**
+- Clique em **Build and Run**
+
+Isso irá compilar o programa e abrir o terminal interno automaticamente.
+
+
+* Executar o Programa
+
+Após a compilação, o CodeBlocks abrirá o console sozinho.
+
+Se quiser executar manualmente:
+
+- Vá em **Build → Run**  
+  **ou**
+- Pressione **Ctrl + F10**
+
+---
+## 10. Alunos:
+Nome: Lian Pinheiro da Silva RA- 2759322<br>
+Manoella Antunes Pereira  - RA: 2777169 <br>
+Lediandro O. B. Saldanha - RA: 2758946<br>
+Matheus Yukio Lopes Hocihara - RA: 2783061
+
