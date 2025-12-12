@@ -9,17 +9,53 @@ struct cadastro {
 };
     struct cadastro jogador;
 
-// fun��o login
-void login(struct cadastro *p ){
+// função login
+void login(struct cadastro *p) {
+
+    int apenasNumeros(const char *str) {
+        for (int i = 0; str[i] != '\0'; i++) {
+            if (str[i] < '0' || str[i] > '9') {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    int nomeValido(const char *nome) {
+        for (int i = 0; nome[i] != '\0'; i++) {
+            if (nome[i] >= '0' && nome[i] <= '9') {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
 
     printf("Qual seu nome: ");
     scanf(" %[^\n]", p->nome);
-    printf("Qual sua idade: ");
-    scanf("%d", &p->idade);
 
+    // valida nome
+    while (!nomeValido(p->nome)) {
+        printf("O nome não pode conter números! Digite novamente: ");
+        scanf(" %[^\n]", p->nome);
+    }
+
+    char idadeStr[20];
+    printf("Qual sua idade: ");
+    scanf("%s", idadeStr);
+
+    // valida idade
+    while (!apenasNumeros(idadeStr)) {
+        printf("A idade deve conter apenas números! Tente novamente: ");
+        scanf("%s", idadeStr);
+    }
+
+    p->idade = atoi(idadeStr);
 }
 
-// Fun��o para mostrar o desenho do arquivo
+
+
+// Função para mostrar o desenho do arquivo
 
 void mostrarDesenho(const char* nome)
 {
@@ -43,7 +79,7 @@ sprintf(caminho, "imagens\\%s.txt", nome);
     fclose(f);
 }
 
-// Fun��o para gerar jogada aleat�ria do computador(falta break)
+// Função para gerar jogada aleatória do computador(falta break)
 const char* jogadaComputador() {
     int r = rand() % 3;
     switch (r) {
@@ -54,7 +90,7 @@ const char* jogadaComputador() {
     }
 }
 
-// Fun��o para decidir o vencedor
+// Função para decidir o vencedor
 const char* vencedor(const char* jogador, const char* computador) {
     if (strcmp(jogador, computador) == 0) return "Empate";
     if ((strcmp(jogador, "pedra") == 0 && strcmp(computador, "tesoura") == 0) ||
@@ -65,7 +101,7 @@ const char* vencedor(const char* jogador, const char* computador) {
     return "Computador venceu";
 }
 
-// Fun��o recursiva para jogar novamente
+// Função recursiva para jogar novamente
 void jogar(int* totalPartidas, char*** historico, int* pontosJogador, int* pontosComputador, int* empates) {
     char escolha[20];
     printf("\nDigite sua jogada (pedra/papel/tesoura): ");
@@ -73,7 +109,7 @@ void jogar(int* totalPartidas, char*** historico, int* pontosJogador, int* ponto
 
     // Validar entrada do jogador
     while (strcmp(escolha, "pedra") != 0 && strcmp(escolha, "papel") != 0 && strcmp(escolha, "tesoura") != 0) {
-        printf("Op��o inv�lida! Digite novamente (pedra/papel/tesoura): ");
+        printf("Opção inválida! Digite novamente (pedra/papel/tesoura): ");
         scanf("%s", escolha);
     }
 
@@ -97,7 +133,7 @@ void jogar(int* totalPartidas, char*** historico, int* pontosJogador, int* ponto
     // Mostra placar
     printf("\nPlacar:\n %s: %d | Computador: %d | Empates: %d\n", jogador.nome, *pontosJogador, *pontosComputador, *empates);
 
-    // Armazena hist�rico
+    // Armazena histórico
     (*totalPartidas)++;
     *historico = realloc(*historico, (*totalPartidas) * sizeof(char*));
     (*historico)[*totalPartidas - 1] = malloc(100 * sizeof(char));
@@ -114,17 +150,17 @@ while (1) {
         jogar(totalPartidas, historico, pontosJogador, pontosComputador, empates);
         break;
     }
-    else if (strcmp(resposta, "nao") == 0 || strcmp(resposta, "n�o") == 0) {
+    else if (strcmp(resposta, "nao") == 0 || strcmp(resposta, "não") == 0) {
         printf("\nEncerrando o jogo...\n");
-        return; // sai da fun��o e volta ao main
+        return; // sai da função e volta ao main
     }
     else {
-        printf("Resposta inv�lida! Tente novamente.\n");
+        printf("Resposta inválida! Tente novamente.\n");
     }
 }
 }
 
-// Fun��o para salvar hist�rico e placar em arquivo
+// Função para salvar histórico e placar em arquivo
 void salvarArquivo(int totalPartidas, char** historico, int pontosJogador, int pontosComputador, int empates) {
     FILE* f = fopen("historico.txt", "w");
     if (!f) {
@@ -139,7 +175,7 @@ void salvarArquivo(int totalPartidas, char** historico, int pontosJogador, int p
     fprintf(f, "\nPlacar final:\n %s: %d\nComputador: %d\nEmpates: %d\n", jogador.nome, pontosJogador, pontosComputador, empates);
     fclose(f);
 
-    printf("\nHist�rico e placar salvos em 'historico.txt'.\n");
+    printf("\nHistórico e placar salvos em 'historico.txt'.\n");
 }
 
 
@@ -159,7 +195,7 @@ int main() {
 
     salvarArquivo(totalPartidas, historico, pontosJogador, pontosComputador, empates);
 
-    // Liberar mem�ria
+    // Liberar memória
     for (int i = 0; i < totalPartidas; i++) {
         free(historico[i]);
     }
