@@ -1,4 +1,13 @@
 ## 1. Resumo do Projeto
+ • Imagens do Projeto<br><br>
+## Tela 1
+![Tela 1](imagensReadme/imagemUm.png)
+### Tela 2
+![Tela 2](imagensReadme/imagemDois.png)
+### Tela 3
+![Tela 3](imagensReadme/imagemTres.png)
+## Demonstração (GIF)
+![gif do Jogo](imagensReadme/git_jokempo.gif)
 
 Neste projeto, o objetivo é criar um programa em C que traga à vida o famoso jogo Pedra, Papel e Tesoura (ou Jokenpô). O programa permitirá que qualquer pessoa crie uma conta informando nome e idade, dispute rodadas contra o próprio computador, acompanhe a pontuação em tempo real e, ao concluir, registre um relatório completo dos jogos e o resultado final em um arquivo. 
 Para construir este sistema, foram empregadas técnicas de programação C, como:ponteiros, alocação dinâmica, struct, arquivos e funções.
