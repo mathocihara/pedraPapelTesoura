@@ -105,7 +105,7 @@ Para construir este sistema, foram empregadas técnicas de programação C, como
 - Verificar se o arquivo existe antes da leitura (mostrarDesenho()).
 - Caso não seja possível abrir, o programa informa ao usuário e continua a execução.
 
-```
+```c
 if (!f) {
 printf("Erro ao abrir arquivo: %s\n", caminho);
 return;
@@ -115,7 +115,7 @@ return;
 ### • Gravação em arquivos
 - A função salvarArquivo() valida se o arquivo pôde ser aberto para escrita.
 - Se houver falha, o programa avisa o usuário.
-```
+```c
 if (!f) {
     printf("Erro ao abrir arquivo!\n");
     return;
@@ -125,7 +125,7 @@ if (!f) {
 ### • Validação de entrada do usuário
 - O programa garante que o jogador só possa escolher entre "pedra", "papel" ou "tesoura".
 - Caso contrário, solicita nova entrada até que seja válida.
-```
+```c
 while ( 
 (strcmp(escolha, "pedra") != 0) && 
 (strcmp(escolha, "papel") != 0) && 
@@ -140,10 +140,21 @@ while (
 ### • Alocação dinâmica de memória
 - Uso de malloc e realloc para armazenar o histórico de jogadas.
 - Recomenda-se verificar se o ponteiro retornado não é NULL para evitar falhas críticas (melhoria futura).
+```c
+// Aumenta dinamicamente o vetor de histórico
+*historico = realloc(*historico, (*totalPartidas) * sizeof(char*));
 
+// Aloca espaço para a nova linha do histórico
+(*historico)[*totalPartidas - 1] = malloc(100 * sizeof(char));
+
+// Armazena a descrição da partida atual
+sprintf((*historico)[*totalPartidas - 1],
+        "%s: %s | Computador: %s | %s",
+        jogador.nome, escolha, comp, resultado);
+```
 ### • Fallback seguro na jogada do computador
 - Caso ocorra erro inesperado no switch, a jogada padrão é "pedra", garantindo que o jogo continue.
-```
+```c
 default:
     return "pedra"; 
 ```
@@ -151,7 +162,7 @@ default:
 ### • Validação da resposta ao continuar o jogo
 - O programa garante que o usuário só possa responder “sim” ou “nao” quando perguntado se deseja continuar jogando.
 - Caso a entrada seja inválida, o usuário é notificado e o programa solicita uma nova resposta até receber um valor permitido:
-```
+```c
     if (strcmp(resposta, "sim") == 0) {
         jogar(totalPartidas, historico, pontosJogador, pontosComputador, empates);
         break;
@@ -165,6 +176,53 @@ default:
     }
 }
 ```
+### • Validação de entrada no login
+
+- O programa impede que o usuário insira **números no nome**, que a idade contenha **letras ou símbolos**. E Caso a entrada seja inválida, o usuário é avisado e solicitado a inserir novamente até estar correto.
+
+```c
+void login(struct cadastro *p) {
+
+    int apenasNumeros(const char *str) {
+        for (int i = 0; str[i] != '\0'; i++) {
+            if (str[i] < '0' || str[i] > '9') {
+                return 0; // não é número
+            }
+        }
+        return 1; // é número
+    }
+
+    int nomeValido(const char *nome) {
+        for (int i = 0; nome[i] != '\0'; i++) {
+            if (nome[i] >= '0' && nome[i] <= '9') {
+                return 0; // contém número -> inválido
+            }
+        }
+        return 1; // válido
+    }
+
+    printf("Qual seu nome: ");
+    scanf(" %[^\n]", p->nome);
+
+    // valida nome
+    while (!nomeValido(p->nome)) {
+        printf("O nome não pode conter números! Digite novamente: ");
+        scanf(" %[^\n]", p->nome);
+    }
+
+    char idadeStr[20];
+    printf("Qual sua idade: ");
+    scanf("%s", idadeStr);
+
+    // valida idade
+    while (!apenasNumeros(idadeStr)) {
+        printf("A idade deve conter apenas números! Tente novamente: ");
+        scanf("%s", idadeStr);
+    }
+
+    p->idade = atoi(idadeStr);
+}
+
 
 ---
 ## 8. Conclusão
