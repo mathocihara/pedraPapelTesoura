@@ -90,6 +90,75 @@ Para construir este sistema, foram empregadas técnicas de programação C, como
 - Plataforma para desenvolver o programa utilizando a linguagem C.
 
 ---
+## 7. Tratamento de Erros
 
+### • Abertura de arquivos
+- Verificar se o arquivo existe antes da leitura (mostrarDesenho()).
+- Caso não seja possível abrir, o programa informa ao usuário e continua a execução.
 
+```
+if (!f) {
+printf("Erro ao abrir arquivo: %s\n", caminho);
+return;
+}
+```
+
+### • Gravação em arquivos
+- A função salvarArquivo() valida se o arquivo pôde ser aberto para escrita.
+- Se houver falha, o programa avisa o usuário.
+```
+if (!f) {
+    printf("Erro ao abrir arquivo!\n");
+    return;
+}
+```
+
+### • Validação de entrada do usuário
+- O programa garante que o jogador só possa escolher entre "pedra", "papel" ou "tesoura".
+- Caso contrário, solicita nova entrada até que seja válida.
+```
+while ( 
+(strcmp(escolha, "pedra") != 0) && 
+(strcmp(escolha, "papel") != 0) && 
+(strcmp(escolha, "tesoura") != 0) 
+) {
+    printf("Opção inválida! Digite novamente
+(pedra/papel/tesoura): ");
+    scanf("%s", escolha);
+}
+```
+
+### • Alocação dinâmica de memória
+- Uso de malloc e realloc para armazenar o histórico de jogadas.
+- Recomenda-se verificar se o ponteiro retornado não é NULL para evitar falhas críticas (melhoria futura).
+
+### • Fallback seguro na jogada do computador
+- Caso ocorra erro inesperado no switch, a jogada padrão é "pedra", garantindo que o jogo continue.
+```
+default:
+    return "pedra"; 
+```
+
+### • Validação da resposta ao continuar o jogo
+- O programa garante que o usuário só possa responder “sim” ou “nao” quando perguntado se deseja continuar jogando.
+- Caso a entrada seja inválida, o usuário é notificado e o programa solicita uma nova resposta até receber um valor permitido:
+```
+    if (strcmp(resposta, "sim") == 0) {
+        jogar(totalPartidas, historico, pontosJogador, pontosComputador, empates);
+        break;
+    }
+    else if (strcmp(resposta, "nao") == 0 || strcmp(resposta, "não") == 0) {
+        printf("\nEncerrando o jogo...\n");
+        return;
+    }
+    else {
+        printf("Resposta inválida! Tente novamente.\n");
+    }
+}
+```
+
+---
+## 8. Conclusão
+Este trabalho possibilitou colocar em prática vários princípios da linguagem C em uma situação interessante e proveitosa. Foi possível aprofundar o conhecimento sobre estruturas, ponteiros, uso de memória dinâmica, tratamento de dados em arquivos e organização em módulos, fixando o aprendizado. 
+O produto final é um jogo que funciona bem, que oferece interação e que pode ser expandido, recebendo melhorias visuais ou compatibilidade com plataformas mais modernas.
 
