@@ -296,4 +296,5 @@ Matheus Yukio Lopes Hocihara - RA: 2783061
 - Histórico- Possibilidade de salvar o histórico das partidas.
 - Utiliza: Fotos dos arquivos utilizados no código principal.
 ![Tela 4](imagensReadme/interface_grafica.gif)
-
+<br>
+[Acesse o repositório com a GUI](https://github.com/dblian23/InterfaceGrafica)
