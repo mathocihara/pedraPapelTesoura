@@ -295,4 +295,5 @@ Matheus Yukio Lopes Hocihara - RA: 2783061
 - Placar- Mostra os pontos obtidos pelo jogador e pela máquina e contabiliza em caso de empate;
 - Histórico- Possibilidade de salvar o histórico das partidas.
 - Utiliza: Fotos dos arquivos utilizados no código principal.
+![Tela 4](imagensReadme/interface_grafica.gif)
 
