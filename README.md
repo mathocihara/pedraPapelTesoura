@@ -223,7 +223,7 @@ void login(struct cadastro *p) {
     p->idade = atoi(idadeStr);
 }
 
-
+```
 ---
 ## 8. Conclusão
 Este trabalho possibilitou colocar em prática vários princípios da linguagem C em uma situação interessante e proveitosa. Foi possível aprofundar o conhecimento sobre estruturas, ponteiros, uso de memória dinâmica, tratamento de dados em arquivos e organização em módulos, fixando o aprendizado. 
