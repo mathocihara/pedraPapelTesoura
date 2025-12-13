@@ -285,3 +285,14 @@ Manoella Antunes Pereira  - RA: 2777169 <br>
 Lediandro O. B. Saldanha - RA: 2758946<br>
 Matheus Yukio Lopes Hocihara - RA: 2783061
 
+---
+# 11. Interface grafica
+
+# Contém:
+- Login- Nome e Idade;
+- Escolha- Possibilidade de escolha das três opções do Jokenpô, sendo pedra, papel e Tesoura;
+- Jogar novamente- É possivel jogar novamente e contabilizar no placar;
+- Placar- Mostra os pontos obtidos pelo jogador e pela máquina e contabiliza em caso de empate;
+- Histórico- Possibilidade de salvar o histórico das partidas.
+- Utiliza: Fotos dos arquivos utilizados no código principal.
+
